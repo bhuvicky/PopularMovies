@@ -46,7 +46,7 @@ class MovieListPresenter(val view: MovieListContract.View): MovieListContract.Pr
 
         val dataSource = MovieDataSource()
 
-        val call = dataSource.operation.fetchMovieList("popularity.desc")
+        val call = dataSource.fetchMovies("popularity.desc")
         call.enqueue(object : Callback<Movie> {
             override fun onFailure(call: Call<Movie>?, t: Throwable?) {
                 view.showError(t!!)

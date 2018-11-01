@@ -12,8 +12,8 @@ import javax.inject.Inject
 interface MovieOperation {
 
     @GET("discover/movie?")
-    fun fetchMovieList(@Query("sort_by") sortBy: String,
-                       @Query("api_key") key: String = Constant.Key.TMDB_API_KEY): Call<Movie>
+    fun fetchMovieList(@Query("api_key") key: String,
+                       @Query("sort_by") sortBy: String): Call<Movie>
 
     @GET("movie/{movie_id}?")
     fun fetchMovieDetails(@Path("movie_id") movieId: Long,
@@ -29,8 +29,8 @@ class MovieDataSource {
         DaggerNetworkComponent.builder().build().inject(this)
     }
 
-    fun fetchMovieList(sortOrder: String): Call<Movie> {
-        return operation.fetchMovieList(sortOrder)
+    fun fetchMovies(sortOrder: String): Call<Movie> {
+        return operation.fetchMovieList(Constant.Key.TMDB_API_KEY, sortOrder)
     }
 
     fun fetchMovieDetails(movieId: Long): Call<Movie> {
