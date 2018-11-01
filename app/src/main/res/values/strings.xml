@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Popular Movies</string>
+
+    <string name="image_description_poster">Movie Poster</string>
+    <string name="image_description_backdrop">Movie Backdrop</string>
+    <string name="image_description_next">Navigate</string>
+
+    <string name="menu_search">Search</string>
+</resources>
