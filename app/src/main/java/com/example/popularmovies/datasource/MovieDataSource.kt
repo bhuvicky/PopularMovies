@@ -1,5 +1,6 @@
 package com.example.popularmovies.datasource
 
+import com.example.popularmovies.BuildConfig
 import com.example.popularmovies.Constant.Constant
 import com.example.popularmovies.dependency.component.DaggerNetworkComponent
 import com.example.popularmovies.model.Movie
@@ -17,7 +18,7 @@ interface MovieOperation {
 
     @GET("movie/{movie_id}?")
     fun fetchMovieDetails(@Path("movie_id") movieId: Long,
-                          @Query("api_key") key: String = Constant.Key.TMDB_API_KEY): Call<Movie>
+                          @Query("api_key") key: String = BuildConfig.TMDB_API_KEY): Call<Movie>
 }
 
 class MovieDataSource {
@@ -29,11 +30,7 @@ class MovieDataSource {
         DaggerNetworkComponent.builder().build().inject(this)
     }
 
-    fun fetchMovies(sortOrder: String): Call<Movie> {
-        return operation.fetchMovieList(Constant.Key.TMDB_API_KEY, sortOrder)
-    }
+    fun fetchMovies(sortOrder: String) = operation.fetchMovieList(BuildConfig.TMDB_API_KEY, sortOrder)
 
-    fun fetchMovieDetails(movieId: Long): Call<Movie> {
-        return operation.fetchMovieDetails(movieId)
-    }
+    fun fetchMovieDetails(movieId: Long) = operation.fetchMovieDetails(movieId)
 }
