@@ -4,6 +4,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.example.popularmovies.datasource.MovieDataSource
 import com.example.popularmovies.model.Movie
+import com.example.popularmovies.model.MovieDetails
 import com.example.popularmovies.utils.NetworkUtils
 import retrofit2.Call
 
@@ -29,8 +30,8 @@ class MovieListPresenter(val view: MovieListContract.View): MovieListContract.Pr
         } ?: fetchMovieList()
     }
 
-    override fun onMovieItemClicked(movieId: Int) {
-        view.showMovieDetailsScreen(movieId)
+    override fun onMovieItemClicked(details: MovieDetails) {
+        view.showMovieDetailsScreen(details)
     }
 
     private fun fetchMovieList() {
@@ -48,15 +49,18 @@ class MovieListPresenter(val view: MovieListContract.View): MovieListContract.Pr
 
         val call = dataSource.fetchMovies("popularity.desc")
         call.enqueue(object : Callback<Movie> {
-            override fun onFailure(call: Call<Movie>?, t: Throwable?) {
-                view.showError(t!!)
+            override fun onFailure(call: Call<Movie>, t: Throwable) {
+                System.out.println("log on failure")
+                view.showError(t)
             }
-            override fun onResponse(call: Call<Movie>?, response: Response<Movie>?) {
-                if (response?.isSuccessful()!!) {
-                    view.showMovieList(response?.body())
+            override fun onResponse(call: Call<Movie>, response: Response<Movie>) {
+                if (response.isSuccessful()) {
+                    System.out.println("log on resp success")
+                    view.showMovieList(response.body())
                     updateErrorStatus()
                 } else {
-                    Log.d("log", response?.code().toString())
+                    System.out.println("log on resp fail")
+                    Log.d("log", response.code().toString())
                 }
             }
 

@@ -7,6 +7,7 @@ import android.view.*
 import com.example.popularmovies.R
 import com.example.popularmovies.base.BaseFragment
 import com.example.popularmovies.model.Movie
+import com.example.popularmovies.model.MovieDetails
 import com.example.popularmovies.movies.moviedetail.MovieDetailsFragment
 
 import kotlinx.android.synthetic.main.fragment_movie_list.*
@@ -49,8 +50,8 @@ class MovieListFragment: BaseFragment(), MovieListContract.View {
         adapter.setData(data)
     }
 
-    override fun showMovieDetailsScreen(movieId: Int) {
-        replace(R.id.fragment_host, MovieDetailsFragment.newInstance(movieId))
+    override fun showMovieDetailsScreen(details: MovieDetails) {
+        replace(R.id.fragment_host, MovieDetailsFragment.newInstance(details))
     }
 
 

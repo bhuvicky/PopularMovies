@@ -1,15 +1,15 @@
 package com.example.popularmovies.movies.movielist
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.example.popularmovies.Constant.Constant
 import com.example.popularmovies.GlideApp
 import com.example.popularmovies.R
 import com.example.popularmovies.model.Movie
-import com.example.popularmovies.model.MovieResult
+import com.example.popularmovies.model.MovieDetails
 
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_movie_overview.*
@@ -18,10 +18,10 @@ import kotlinx.android.synthetic.main.item_movie_overview.*
 class MovieAdapter(val context:Context): RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     public var presenter: MovieListPresenter? = null
-    private var movieList: MutableList<MovieResult>? = null
+    private var movieList: MutableList<MovieDetails>? = null
 
     public fun setData(movie: Movie?) {
-        movieList = movie?.results
+        movieList = movie?.details
         notifyDataSetChanged()
     }
 
@@ -45,7 +45,7 @@ class MovieAdapter(val context:Context): RecyclerView.Adapter<MovieAdapter.Movie
                 .into(holder.posterImage);
 
         holder.rootView.setOnClickListener {
-
+            presenter?.onMovieItemClicked(movieList?.get(holder.adapterPosition)!!)
         }
     }
 

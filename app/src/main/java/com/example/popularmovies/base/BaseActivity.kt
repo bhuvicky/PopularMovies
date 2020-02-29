@@ -1,6 +1,7 @@
 package com.example.popularmovies.base
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+
 
 open class BaseActivity: AppCompatActivity() {
 
@@ -11,6 +12,10 @@ open class BaseActivity: AppCompatActivity() {
         ft.replace(containerId, fragment)
         ft.addToBackStack(null)
         ft.commit()
+    }
+
+    fun setTitle(title: String) {
+        supportActionBar?.title = title
     }
 
     override fun onBackPressed() {

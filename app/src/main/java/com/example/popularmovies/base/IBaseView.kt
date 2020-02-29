@@ -1,7 +1,7 @@
 package com.example.popularmovies.base
 
 import android.content.Context
-import android.support.v4.app.FragmentActivity
+import androidx.core.app.FragmentActivity
 
 interface IBaseView {
 

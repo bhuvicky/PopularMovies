@@ -1,6 +1,6 @@
 package com.example.popularmovies.base
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 
 open class BaseFragment: Fragment() {
 
@@ -8,4 +8,9 @@ open class BaseFragment: Fragment() {
         (activity as BaseActivity).replace(containerId, fragment)
     }
 
+    protected fun setTitle(title: String) {
+        if (activity is BaseActivity) {
+            (activity as BaseActivity).setTitle(title)
+        }
+    }
 }

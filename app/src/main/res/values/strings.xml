@@ -5,5 +5,8 @@
     <string name="image_description_backdrop">Movie Backdrop</string>
     <string name="image_description_next">Navigate</string>
 
+    <string name="lbl_budget">Budget</string>
+    <string name="lbl_revenue">Revenue</string>
+
     <string name="menu_search">Search</string>
 </resources>
